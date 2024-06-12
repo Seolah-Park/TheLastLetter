@@ -30,3 +30,5 @@ function checkMessage() {
 function saveLastMessage(message) {
     localStorage.setItem('lastMessage', message);
 }
+
+/
