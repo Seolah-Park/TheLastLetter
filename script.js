@@ -3,16 +3,6 @@ function navigate(page) {
     window.location.href = page;
 }
 
-function showButton() {
-    var input = document.getElementById('codeInput').value;
-    var button = document.getElementById('confirmButton');
-    if (input.trim() !== '') {
-        button.style.display = 'block';
-    } else {
-        button.style.display = 'none';
-    }
-}
-
 function generateCode() {
     var uppercase = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
     var lowercase = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -20,16 +10,19 @@ function generateCode() {
     return uppercase + lowercase + digits;
 }
 
-function showPartialCode() {
+function checkMessage() {
     var messageInput = document.getElementById('messageInput').value;
-    var codeInput = document.getElementById('codeInput');
+    var codeSection = document.getElementById('codeSection');
+    var confirmationMessage = document.getElementById('confirmationMessage');
     var codeData = JSON.parse(localStorage.getItem('codeData') || '[]');
     var matchingCode = codeData.find(item => item.message === messageInput);
-    
+
     if (matchingCode) {
-        codeInput.placeholder = '올바른 코드의 숫자를 입력하세요. 예: ' + matchingCode.code.substring(0, 2) + '123';
+        codeSection.style.display = 'block';
+        document.getElementById('codeInput').placeholder = `코드를 입력하세요 (예: ${matchingCode.code.substring(0, 2)}123)`;
+        confirmationMessage.textContent = '';
     } else {
-        codeInput.placeholder = '코드를 입력하세요';
+        confirmationMessage.textContent = '이메일 주소를 다시 확인해주세요.';
     }
 }
 
