@@ -57,21 +57,26 @@
     <button class="btn" onclick="location.href='index.html'">처음으로</button>
 
     <script>
-        var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var lowercase = 'abcdefghijklmnopqrstuvwxyz';
-        var numbers = '0123456789';
+        var emailCount = localStorage.getItem('emailCount') || 1;
+        var codeCount = localStorage.getItem('codeCount') || 1;
+        var email = localStorage.getItem('이메일' + emailCount);
         var code = generateCode();
         document.getElementById('code').textContent = code;
-        localStorage.setItem('코드1', code);
+        localStorage.setItem('코드' + codeCount, code);
+        localStorage.setItem('이메일' + emailCount, email);
+        localStorage.setItem('codeCount', parseInt(codeCount) + 1);
 
         function generateCode() {
-            var result = '';
-            result += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
-            result += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+            var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var lowercase = 'abcdefghijklmnopqrstuvwxyz';
+            var numbers = '0123456789';
+            var code = '';
+            code += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+            code += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
             for (var i = 0; i < 3; i++) {
-                result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+                code += numbers.charAt(Math.floor(Math.random() * numbers.length));
             }
-            return result;
+            return code;
         }
     </script>
 </body>
