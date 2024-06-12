@@ -40,7 +40,6 @@ function confirmCode() {
     }
 }
 
-// This function should be called when the form on page 3 is submitted
 function saveLastMessage(message) {
     localStorage.setItem('lastMessage', message);
 }
