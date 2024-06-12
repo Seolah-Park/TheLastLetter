@@ -20,22 +20,34 @@ function generateCode() {
     return uppercase + lowercase + digits;
 }
 
-function confirmCode() {
-    var input = document.getElementById('codeInput').value;
-    var generatedCode = localStorage.getItem('generatedCode');
-    var confirmationMessage = document.getElementById('confirmationMessage');
-    var lastMessage = localStorage.getItem('lastMessage');
+function showPartialCode() {
+    var messageInput = document.getElementById('messageInput').value;
+    var codeInput = document.getElementById('codeInput');
+    var codeData = JSON.parse(localStorage.getItem('codeData') || '[]');
+    var matchingCode = codeData.find(item => item.message === messageInput);
     
-    if (input === generatedCode) {
-        confirmationMessage.textContent = '코드가 확인 되었습니다. 마지막 메시지: ' + lastMessage;
+    if (matchingCode) {
+        codeInput.placeholder = '올바른 코드의 숫자를 입력하세요. 예: ' + matchingCode.code.substring(0, 2) + '123';
+    } else {
+        codeInput.placeholder = '코드를 입력하세요';
+    }
+}
+
+function confirmCode() {
+    var codeInput = document.getElementById('codeInput').value;
+    var confirmationMessage = document.getElementById('confirmationMessage');
+    var codeData = JSON.parse(localStorage.getItem('codeData') || '[]');
+    
+    var isValid = codeData.some(item => item.code === codeInput);
+    
+    if (isValid) {
+        confirmationMessage.textContent = '코드가 확인 되었습니다.';
     } else {
         confirmationMessage.textContent = '코드가 올바르지 않습니다. 다시 시도해 주세요.';
     }
 }
 
-// This function should be called when the form on page 4 is submitted
+// This function should be called when the form on page 3 is submitted
 function saveLastMessage(message) {
     localStorage.setItem('lastMessage', message);
 }
-
-

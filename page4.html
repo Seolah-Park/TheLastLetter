@@ -17,7 +17,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             var code = generateCode();
             document.getElementById('codeDisplay').textContent = code;
-            localStorage.setItem('generatedCode', code);
+            var lastMessage = localStorage.getItem('lastMessage');
+            var codeData = JSON.parse(localStorage.getItem('codeData') || '[]');
+            codeData.push({ message: lastMessage, code: code });
+            localStorage.setItem('codeData', JSON.stringify(codeData));
         });
     </script>
 </body>
