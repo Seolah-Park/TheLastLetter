@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 2</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>법적효력의 조건</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>법적효력의 조건</h1>
-        <button onclick="navigate('page3.html')">쓰기</button>
-    </div>
-    <script src="script.js"></script>
+    <h1>법적효력의 조건</h1>
+    <button id="btn4">쓰기</button>
+
+    <script>
+        document.getElementById("btn4").onclick = function () {
+            location.href = "page3.html";
+        };
+    </script>
 </body>
 </html>

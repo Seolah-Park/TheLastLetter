@@ -1,31 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 3</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>마음의 편지</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>마음의 편지</h1>
-        <textarea id="message1" placeholder="Write here..."></textarea>
-        <textarea id="message2" placeholder="Write here..."></textarea>
-        <textarea id="message3" placeholder="Write here..."></textarea>
-        <button onclick="submitMessages()">보내기</button>
-    </div>
-    <script src="script.js"></script>
+    <h1>마음의 편지</h1>
+    <textarea id="message1" placeholder="메시지를 입력하세요"></textarea>
+    <textarea id="message2" placeholder="메시지를 입력하세요"></textarea>
+    <textarea id="message3" placeholder="메시지를 입력하세요"></textarea>
+    <button id="btn5">보내기</button>
+
     <script>
-        function submitMessages() {
-            var message1 = document.getElementById('message1').value;
-            var message2 = document.getElementById('message2').value;
-            var message3 = document.getElementById('message3').value;
-            var lastMessage = message3; // Save the last message
-
-            localStorage.setItem('lastMessage', lastMessage);
-
-            navigate('page4.html');
-        }
+        document.getElementById("btn5").onclick = function () {
+            var email = document.getElementById("message3").value;
+            localStorage.setItem("이메일1", email);
+            location.href = "page4.html";
+        };
     </script>
 </body>
 </html>

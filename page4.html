@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 4</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>당신의 마지막 날 편지를 전달하겠습니다.</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>당신의 마지막 날 편지를 전달하겠습니다. 당신의 주변인에게 코드가 전달됩니다.</h1>
-        <p id="codeDisplay"></p>
-        <button onclick="navigate('index.html')">처음으로</button>
-    </div>
-    <script src="script.js"></script>
+    <h1>당신의 마지막 날 편지를 전달하겠습니다.</h1>
+    <p>당신의 주변인에게 코드가 전달됩니다.</p>
+    <p id="codeDisplay"></p>
+    <button id="btn6">처음으로</button>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var code = generateCode();
-            document.getElementById('codeDisplay').textContent = code;
-            localStorage.setItem('generatedCode', code);
-        });
+        function generateCode() {
+            var code = "";
+            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 5; i++) {
+                code += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return code;
+        }
+
+        var email = localStorage.getItem("이메일1");
+        var code = generateCode();
+        localStorage.setItem("코드1", code);
+        document.getElementById("codeDisplay").innerText = code;
+
+        document.getElementById("btn6").onclick = function () {
+            location.href = "index.html";
+        };
     </script>
 </body>
 </html>
