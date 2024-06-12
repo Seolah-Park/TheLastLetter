@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Last Letter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>The Last Letter</h1>
-    <button onclick="location.href='page2.html'">버튼1</button>
-    <button onclick="location.href='page3.html'">버튼2</button>
-    <button onclick="location.href='page5.html'">다른 이유로 찾아오셨나요? 코드를 입력해주세요</button>
+    <div class="container">
+        <div class="signature">
+            <!-- SVG 코드 시작 -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100">
+                <!-- "The Last Letter" SVG paths here -->
+                <path fill="none" stroke="#000000" stroke-width="2" d="M10,50 Q100,10 200,50 T400,50"></path>
+                <!-- 추가 경로들 -->
+            </svg>
+            <!-- SVG 코드 끝 -->
+        </div>
+    </div>
+    <button id="btn1">Go to Page 2</button>
+    <button id="btn2">Go to Page 3</button>
+    <button id="btn3">Enter Code</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

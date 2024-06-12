@@ -1,26 +1,22 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+/* styles.css */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center; /* 중앙 정렬 */
 }
 
-h1 {
-    color: #333;
+.signature {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 20%;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px;
-}
-
-textarea, input[type="text"] {
-    width: 80%;
-    padding: 10px;
-    margin: 10px;
-}
-
-#codeDisplay {
-    font-size: 20px;
-    font-weight: bold;
-    color: green;
+.signature svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

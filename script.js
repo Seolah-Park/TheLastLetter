@@ -1,32 +1,50 @@
-// script.js
-function navigate(page) {
-    window.location.href = page;
-}
+// scripts.js
+window.signature = {
+  initialize: function() {
+    $('.signature svg').each(function() {
+      var paths = $('path, circle, rect', this);
+      var delay = 0;
+      paths.each(function() {
+        var path = $(this);
+        var length = path[0].getTotalLength();
+        var speed = length < 100 ? 20 : Math.floor(length);
+        delay += speed + 100;
+        path.css('transition', 'none')
+            .attr('data-length', length)
+            .attr('data-speed', speed)
+            .attr('data-delay', delay)
+            .attr('stroke-dashoffset', length)
+            .attr('stroke-dasharray', length + ',' + length);
+      });
+    });
+  },
 
-function generateCode() {
-    var uppercase = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-    var lowercase = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-    var digits = Math.floor(Math.random() * 900 + 100); // 100 to 999
-    return uppercase + lowercase + digits;
-}
+  animate: function() {
+    $('.signature svg').each(function() {
+      var paths = $('path, circle, rect', this);
+      paths.each(function() {
+        var path = $(this);
+        var length = path.attr('data-length');
+        var speed = path.attr('data-speed');
+        var delay = path.attr('data-delay');
+        path.css('transition', 'stroke-dashoffset ' + speed + 'ms ' + delay + 'ms linear')
+            .attr('stroke-dashoffset', '0');
+      });
+    });
+  }
+};
 
-function checkMessage() {
-    var messageInput = document.getElementById('messageInput').value;
-    var codeData = JSON.parse(localStorage.getItem('codeData') || '[]');
-    var matchingCode = codeData.find(item => item.message === messageInput);
+$(document).ready(function() {
+  window.signature.initialize();
 
-    if (matchingCode) {
-        var codeInput = prompt(`올바른 코드의 첫 두 글자를 입력하세요. (예: ${matchingCode.code.substring(0, 2)})`);
-        if (codeInput === matchingCode.code.substring(0, 2)) {
-            document.getElementById('confirmationMessage').textContent = '코드가 확인 되었습니다.';
-        } else {
-            document.getElementById('confirmationMessage').textContent = '코드가 올바르지 않습니다. 다시 시도해 주세요.';
-        }
-    } else {
-        document.getElementById('confirmationMessage').textContent = '이메일 주소를 다시 확인해주세요.';
-    }
-}
+  $('button').on('click', function() {
+    window.signature.initialize();
+    setTimeout(function() {
+      window.signature.animate();
+    }, 500);
+  });
+});
 
-function saveLastMessage(message) {
-    localStorage.setItem('lastMessage', message);
-}
+$(window).on('load', function() {
+  window.signature.animate();
+});
