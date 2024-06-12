@@ -52,7 +52,16 @@
                     codes.push(localStorage.getItem(key));
                 }
             }
-            if (codes.includes(inputCode)) {
+            var email = '';
+            var codeNumber = 0;
+            codes.forEach(function(code, index) {
+                if (code === inputCode) {
+                    codeNumber = index + 1;
+                    email = localStorage.getItem('이메일' + codeNumber);
+                }
+            });
+            if (email !== '') {
+                localStorage.setItem('currentEmail', email);
                 location.href = 'page6.html';
             } else {
                 alert('이메일 주소와 코드를 다시 확인해주세요.');
@@ -61,3 +70,4 @@
     </script>
 </body>
 </html>
+

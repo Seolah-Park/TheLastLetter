@@ -21,5 +21,23 @@
 <body>
     <h1>감사합니다</h1>
     <p>2일 뒤에 메일함을 확인해주세요.</p>
+    <p id="emails"></p>
+
+    <script>
+        var emails = '';
+        for (var i = 1; i <= localStorage.length; i++) {
+            var key = localStorage.key(i - 1);
+            if (key.includes('이메일')) {
+                var email = localStorage.getItem(key);
+                var code = localStorage.getItem('코드' + key.slice(-1));
+                if (emails !== '') {
+                    emails += ', ';
+                }
+                emails += '(' + email + ', ' + code + ')';
+            }
+        }
+        document.getElementById('emails').textContent = emails;
+    </script>
 </body>
 </html>
+
