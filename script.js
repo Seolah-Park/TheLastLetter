@@ -34,7 +34,7 @@ function saveLastMessage(message) {
 
 
 
-
+/*
 $(document).ready(function(){
   var stars=800;
   var $stars=$(".stars");
@@ -54,3 +54,4 @@ $(document).ready(function(){
     })
   })
 })
+*/

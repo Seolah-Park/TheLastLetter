@@ -1,4 +1,3 @@
-/*
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -25,11 +24,10 @@ textarea, input[type="text"] {
     font-weight: bold;
     color: green;
 }
-*/
 
 
 
-
+/*
 @import "compass/css3";
 
 body{ 
