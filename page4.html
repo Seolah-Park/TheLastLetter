@@ -9,9 +9,18 @@
 <body>
     <div class="container">
         <h1>당신의 마지막 날 편지를 전달하겠습니다. 당신의 주변인에게 코드가 전달됩니다.</h1>
+        <p id="codeDisplay"></p>
         <button onclick="navigate('index.html')">처음으로</button>
     </div>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var code = generateCode();
+            document.getElementById('codeDisplay').textContent = code;
+            localStorage.setItem('generatedCode', code);
+        });
+    </script>
 </body>
 </html>
+
 
