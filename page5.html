@@ -12,19 +12,35 @@
     <input type="text" id="codeInput" placeholder="코드를 입력하세요">
     <button id="btn7">확인</button>
 
+    <h2>저장된 이메일 및 코드</h2>
+    <ul id="savedList"></ul>
+
     <script>
         document.getElementById("btn7").onclick = function () {
             var inputEmail = document.getElementById("emailInput").value;
             var inputCode = document.getElementById("codeInput").value;
             var savedEmail = localStorage.getItem("이메일1");
             var savedCode = localStorage.getItem("코드1");
-            if (inputEmail === savedEmail && inputCode === savedCode) {
+            if (savedEmail !== null && savedCode !== null && inputEmail === savedEmail && inputCode === savedCode) {
                 location.href = "page6.html";
             } else {
                 alert("이메일 주소와 코드를 다시 확인해주세요.");
             }
         };
+
+        // 저장된 이메일과 코드를 표시
+        var savedEmail = localStorage.getItem("이메일1");
+        var savedCode = localStorage.getItem("코드1");
+        var savedList = document.getElementById("savedList");
+        if (savedEmail !== null && savedCode !== null) {
+            var listItem = document.createElement("li");
+            listItem.textContent = "이메일: " + savedEmail + ", 코드: " + savedCode;
+            savedList.appendChild(listItem);
+        } else {
+            var listItem = document.createElement("li");
+            listItem.textContent = "저장된 이메일 및 코드가 없습니다.";
+            savedList.appendChild(listItem);
+        }
     </script>
 </body>
 </html>
-
