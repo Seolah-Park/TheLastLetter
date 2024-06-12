@@ -3,31 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>당신의 마지막 날 편지를 전달하겠습니다</title>
+    <title>당신의 마지막 날 편지를 전달하겠습니다.</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>당신의 마지막 날 편지를 전달하겠습니다</h1>
+    <h1>당신의 마지막 날 편지를 전달하겠습니다.</h1>
     <p>당신의 주변인에게 코드가 전달됩니다.</p>
-    <p id="code"></p>
-    <button onclick="location.href='index.html'">처음으로</button>
+    <p id="codeDisplay"></p>
+    <button id="btn6">처음으로</button>
 
     <script>
-        var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var lowercase = 'abcdefghijklmnopqrstuvwxyz';
-        var numbers = '0123456789';
-        var code = generateCode();
-        document.getElementById('code').textContent = code;
-        localStorage.setItem('코드1', code);
-
         function generateCode() {
-            var result = '';
-            result += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
-            result += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
-            for (var i = 0; i < 3; i++) {
-                result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            var code = "";
+            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 5; i++) {
+                code += characters.charAt(Math.floor(Math.random() * characters.length));
             }
-            return result;
+            return code;
         }
+
+        var email = localStorage.getItem("이메일1");
+        var code = generateCode();
+        localStorage.setItem("코드1", code);
+        document.getElementById("codeDisplay").innerText = code;
+
+        document.getElementById("btn6").onclick = function () {
+            location.href = "index.html";
+        };
     </script>
 </body>
 </html>

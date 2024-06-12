@@ -4,31 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마음의 편지</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <h1>마음의 편지</h1>
-    <textarea id="message1"></textarea>
-    <textarea id="message2"></textarea>
-    <textarea id="message3" onchange="saveEmail()"></textarea>
-    <button onclick="saveMessage()">보내기</button>
+    <textarea id="message1" placeholder="메시지를 입력하세요"></textarea>
+    <textarea id="message2" placeholder="메시지를 입력하세요"></textarea>
+    <textarea id="message3" placeholder="메시지를 입력하세요"></textarea>
+    <button id="btn5">보내기</button>
 
     <script>
-        var emailCount = 1;
-
-        function saveEmail() {
-            var email = document.getElementById('message3').value;
-            localStorage.setItem('이메일' + emailCount++, email);
-        }
-
-        function saveMessage() {
-            var message1 = document.getElementById('message1').value;
-            var message2 = document.getElementById('message2').value;
-            var message3 = document.getElementById('message3').value;
-            localStorage.setItem('메시지1', message1);
-            localStorage.setItem('메시지2', message2);
-            localStorage.setItem('이메일' + emailCount++, message3);
-            location.href = 'page4.html';
-        }
+        document.getElementById("btn5").onclick = function () {
+            var email = document.getElementById("message3").value;
+            localStorage.setItem("이메일1", email);
+            location.href = "page4.html";
+        };
     </script>
 </body>
 </html>

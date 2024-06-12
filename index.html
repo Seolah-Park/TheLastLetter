@@ -4,11 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Last Letter</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <h1>The Last Letter</h1>
-    <button onclick="location.href='page2.html'">버튼1</button>
-    <button onclick="location.href='page3.html'">버튼2</button>
-    <button onclick="location.href='page5.html'">다른 이유로 찾아오셨나요? 코드를 입력해주세요</button>
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <button id="btn3">다른 이유로 찾아오셨나요? 코드를 입력해주세요</button>
+
+    <script>
+        document.getElementById("btn1").onclick = function () {
+            location.href = "page2.html";
+        };
+        document.getElementById("btn2").onclick = function () {
+            location.href = "page3.html";
+        };
+        document.getElementById("btn3").onclick = function () {
+            location.href = "page5.html";
+        };
+    </script>
 </body>
 </html>
+
+
