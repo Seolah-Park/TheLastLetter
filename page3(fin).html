@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: #FFFFFF;
+    }
+    .background {
+      position: fixed;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #FFFFFF, #FAE3D5, #525EA1);
+      animation: slideUp 2.5s forwards;
+      z-index: -1;
+    }
+    .fixed-background {
+      background-attachment: fixed;
+    }
+    @keyframes slideUp {
+      to {
+        top: 0;
+      }
+    }
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(100px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .container, .btn-container {
+      animation: fadeInUp 2s forwards;
+    }
+    .container {
+      text-align: left;
+      width: 80%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 100px;
+      opacity: 0;
+    }
+    form {
+      background: #FFF7F2;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px #938BA1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      mix-blend-mode: multiply;
+    }
+    .input-group {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 10px;
+      margin: 0px 0;
+    }
+    .input-group .date-input {
+      width: 20%;
+    }
+    .input-group .location-input {
+      width: 40%;
+    }
+    .input-group .full-name-input {
+      width: 35%;
+    }
+    textarea, input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #FFFEFD;
+      box-shadow: 0 0 10px rgba(255, 254, 253, 0.6), 0 0 20px rgba(255, 254, 253, 0.4);
+      box-sizing: border-box;
+      vertical-align: top;
+      color: #534039;
+    }
+    textarea {
+      height: 66px;
+      resize: none;
+    }
+    input.large {
+      height: 300px;
+    }
+    input.small {
+      height: 40px;
+    }
+    input::placeholder, textarea::placeholder {
+      text-align: start;
+      color: #907F79;
+    }
+    .extra1 {
+      height: 300px;
+      padding-top: 10px;
+      line-height: 1.5;
+    }
+    .extra1::placeholder {
+      white-space: pre-line;
+    }
+    .btn-container {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 20px;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+    @keyframes gradientChange {
+      0% {
+        background: linear-gradient(to bottom, #EBFFFF, #F1F1FF);
+      }
+      50% {
+        background: linear-gradient(to bottom, #FFEBEB, #FFF1F1);
+      }
+      100% {
+        background: linear-gradient(to bottom, #EBFFEB, #F1FFF1);
+      }
+    }
+    .thankyou_message {
+      display: none;
+    }
+    label {
+      display: block;
+      margin-bottom: 0px;
+      color: #675955;
+      text-align: left;
+      margin-left: 0px;
+      width: 100%;
+      padding-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background" id="background"></div>
+  <div class="container">
+    <form id="contact-form" class="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxBczLKntq0W35VayhxChwur1diArbc8-CknlN9JTffEMIA2T_BLSyhWYGfgHq6VOhr/exec">
+      <label for="email1">Dear</label>
+      <input type="email" id="email1" name="email1" placeholder="Please enter the email address of the person who will find your will after your last moment." class="small"><br>
+      <textarea id="extra1" name="extra1" placeholder="Before you write your last letter on paper, you can practice here.
+I recommend you to think about the following...
+
+1. What you really want to say but have not.
+2. About the most memorable moment with the precious people.
+3. When would you like to go back, If you could turn back time.
+(The happiest moment to feel it again, or the most regrettable moment to make a different choice than before.)
+4. How you want the people around you to live after you leave.
+5. What kind of person do you want to be remembered after you leave.
+6. How you want to proceed with your funeral.
+7. How you want people to share and store the things you'll leave behind." class="large extra1" style="height: 300px;"></textarea><br>
+      <label for="message">This letter would be found at</label>
+      <textarea id="message" name="message" required placeholder="Please enter where to store your handwritten last letter."></textarea><br>
+      <label for="email2">From</label>
+      <input type="email" id="email2" name="email2" required class="small" placeholder="Please enter your email address."><br>
+      <div class="input-group">
+        <div class="date-input">
+          <label for="extra3">Date</label>
+          <input type="text" id="extra3" name="extra3" class="small">
+        </div>
+        <div class="location-input">
+          <label for="extra4">Location</label>
+          <input type="text" id="extra4" name="extra4" class="small">
+        </div>
+        <div class="full-name-input">
+          <label for="extra5">Full name</label>
+          <input type="text" id="extra5" name="extra5" placeholder="Enter your full name and put your stamp on it." class="small">
+        </div>
+      </div>
+    </form>
+    <div class="thankyou_message">
+      <h2>Thanks for contacting us! We will get back to you soon!</h2>
+    </div>
+  </div>
+  <div class="btn-container">
+    <button class="btn" onclick="nextPage()">Send</button>
+  </div>
+  <script>
+    function nextPage() {
+      var message = document.getElementById('message').value;
+      var email   = document.getElementById('email1').value;
+      var email2   = document.getElementById('email2').value;
+      localStorage.setItem('이메일1', email);
+      localStorage.setItem('이메일2', email2);
+      localStorage.setItem('메시지', message);
+
+      setTimeout(function() {
+        window.location.href = "page4(fin).html";
+      }, 2000);
+    }
+
+    (function() {
+      function setDate() {
+        var today = new Date();
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var day = days[today.getDay()];
+        var date = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2) + ' (' + day + ')';
+        document.getElementById('extra3').value = date;
+      }
+
+      function setLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lon, true);
+            xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                document.getElementById('extra4').value = response.display_name;
+              }
+            };
+            xhr.send();
+          });
+        }
+      }
+      
+      function loaded() {
+        console.log("The code for finding your last letter was sent to the email of the person you set up.");
+        setDate();
+        setLocation();
+      }
+      
+      document.addEventListener("DOMContentLoaded", loaded, false);
+    })();
+  </script>
+</body>
+</html>

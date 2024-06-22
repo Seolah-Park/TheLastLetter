@@ -3,46 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>법적효력의 조건</title>
+    <title>Making Your Last Letter Legally Valid</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(to bottom, #EBFFFF, #F1F1FF);
-            animation: gradientChange 10s infinite alternate;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* 스크롤을 숨김 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 센터 정렬로 변경 */
+            align-items: center;
+            position: relative;
+            background: #FFFFFF; /* 처음에 배경이 하얀색이 되도록 설정 */
+        }
+        .background {
+            position: fixed;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #FFFFFF, #FAE3D5, #525EA1);
+            animation: slideUp 2.5s forwards;
+            z-index: -1;
+        }
+        .fixed-background {
+            background-attachment: fixed;
+        }
+        @keyframes slideUp {
+            to {
+                top: 0;
+            }
         }
         h1 {
-            color: #333;
+            color: #87776E;
+            opacity: 0;
+            position: relative;
+            top: 10%; /* 원래 위치로 복원 */
+            animation: slideUpText 2s forwards, fadeIn 2s forwards;
+            animation-delay: 0.5s; /* 애니메이션 시작을 0.5초 늦춤 */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+            z-index: 1;
+            margin-bottom: 60px; /* 추가된 마진 */
+        }
+        .content-wrapper {
+            overflow-y: auto;
+            height: 70vh; /* 원래 높이로 복원 */
+            padding: 0 40px; /* 좌우 여백 추가 */
+            display: flex;
+            justify-content: flex-start; /* 시작 부분에 정렬 */
+            align-items: flex-start;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.05) transparent; /* 스크롤바 투명도 95% 설정 */
+            transition: scrollbar-color 1s; /* 스크롤바 투명도 애니메이션 */
+            opacity: 0; /* 초기 투명도 0 */
+            animation: fadeInContent 1.5s forwards; /* 1.5초 동안 서서히 나타나는 애니메이션 */
+            animation-delay: 1.2s; /* 타이틀보다 0.7초 늦게 시작 */
+        }
+        @keyframes fadeInContent {
+            to {
+                opacity: 1;
+            }
+        }
+        .content-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+        .content-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .content-wrapper::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.05); /* 스크롤바 투명도 95% 설정 */
+            mix-blend-mode: hard-light; /* blend mode 설정 */
+            border-radius: 20px;
+            border: 2px solid transparent;
+            height: 20px; /* 스크롤바 길이 조정 */
+            transition: background-color 1s; /* 스크롤바 투명도 애니메이션 */
+        }
+        .content {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 0.5s; /* 타이틀과 같은 시작 시점 */
+            padding: 0; /* 내부 패딩 제거 */
+            text-align: left;
+            max-width: 800px;
+            z-index: 1;
+            line-height: 1.3; /* 행간 설정 */
+        }
+        .content p {
+            color: #87776E;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4);
+            transition: color 0.3s;
+            margin: 0; /* 문단 마진 제거 */
+            padding: 0px 0; /* 문단 위아래 패딩 설정 */
+            margin-bottom: 0px;
+        }
+        .content .subheading {
+            font-size: 1.1em; /* 폰트 크기 감소 */
+            margin-bottom: 0px; /* 제목과 첫 번째 문장 사이의 간격 추가 */
+        }
+        .content .details {
+            padding-left: 0; /* 왼쪽 패딩 제거 */
+            margin-top: 10px;
+            margin-bottom: 50px;
+        }
+        .content .intro {
+            padding-left: 0; /* 왼쪽 패딩 제거 */
+            margin-top: 0px;
+            margin-bottom: 70px;
+        }
+        .content strong.main-title {
+            font-size: 1.4em; /* 폰트 크기 증가 */
         }
         .btn {
-            padding: 10px 20px;
             font-size: 16px;
-            margin: 10px;
+            margin: 45px 10px 0 10px; /* 위쪽 마진을 50px에서 45px로 변경 */
             cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
+            background: none;
             border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            color: #FFE7E0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+            transition: color 0.3s, text-shadow 0.3s;
+            z-index: -1; /* 초기에는 배경 밑에 */
+            position: relative;
+            animation: blink 1.5s infinite; /* 깜빡이는 효과 추가 */
+        }
+        .btn.visible {
+            z-index: 1; /* 나타날 때 배경 위로 */
         }
         .btn:hover {
-            background-color: #0056b3;
+            color: #7A6767;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8);
+            animation: none; /* 깜빡임 멈춤 */
         }
-        @keyframes gradientChange {
-            0% {
-                background: linear-gradient(to bottom, #EBFFFF, #F1F1FF);
+        @keyframes slideUpText {
+            to {
+                top: 0;
+            }
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
             }
             50% {
-                background: linear-gradient(to bottom, #FFEBEB, #FFF1F1);
-            }
-            100% {
-                background: linear-gradient(to bottom, #EBFFEB, #F1FFF1);
+                opacity: 0.5;
             }
         }
     </style>
 </head>
 <body>
-    <h1>법적효력의 조건</h1>
-    <button class="btn" onclick="location.href='page3.html'">쓰기</button>
+    <div class="background" id="background"></div>
+    <h1>Legally Valid Forms of Wills</h1>
+    <div class="content-wrapper" id="content-wrapper">
+        <div class="content" id="content">
+            <p class="intro">If your will does not have legal validity, the contents you have written may not be reflected when organizing what you leave behind. Therefore, if you have a clear idea of how you want your belongings to be handled, it is important to follow the forms and conditions recognized by Korean law.</p>
+            
+            <p><strong class="subheading">1. A Handwritten Will</strong></p>
+            <p class="details">
+                This form can be written without the help of legal experts.<br>
+                All contents of a will must be handwritten by you.<br>
+                At the bottom of the paper, the year, month, and date when the will was written must be noted.<br>
+                The address of the place where the will was written must also be included at the bottom of the paper.<br>
+                All detailed information of the address like building numbers, etc., must be fully written.<br>
+                You must write your full name and affix your seal. A fingerprint seal is acceptable.
+            </p>
+            
+            <p><strong class="subheading">2. A Recorded Will</strong></p>
+            <p class="details">
+                This form is particularly useful when you are unable to write.<br>
+                However, at least one witness is required to observe the recording process and ensure the accuracy of the will.<br>
+                During the video or audio recording of the will, all contents must be recorded in your own voice.<br>
+                When recording begins, you must state the purpose, full name, and the year, month, date without omission.<br>
+                After you have spoken all the contents, the witness must state their name, and verify that the will has been accurately recorded.<br>
+                Minors, those who benefit from the will, and those who lack the capacity to handle affairs due to conditions such as dementia cannot serve as witnesses.
+            </p>
+            
+            <p><strong class="subheading">3. A Notarial Will</strong></p>
+            <p class="details">
+                This form is not commonly used but has the most certain legal validity.<br>
+                Though it requires going through a rigorous process with a notary having legal knowledge,<br>
+                it can play an important role in situations of conflicting interests.<br>
+                Two witnesses are required, and they must be capable adults who can handle affairs,<br>
+                just like the witnesses for a recorded will.<br>
+                In the presence of two witnesses and the notary, you must state the purpose of the will,<br>
+                and the notary will write it down and read it back to ensure accuracy.<br>
+                You and the witnesses must then write your names accurately and affix seals at the bottom of the paper.
+            </p>
+            
+            <p><strong class="subheading">4. A Secret Will</strong></p>
+            <p class="details">
+                This form can be used if you need to keep the contents of the will confidential until your death.<br>
+                You must write the purpose of the will and your full name.<br>
+                Unlike a handwritten will, this can be written by another.<br>
+                This paper must then be placed in an envelope, which must be sealed<br>
+                so that it cannot be opened without breaking the seal.<br>
+                Like a recorded will, the envelope must be shown in front of two witnesses who are capable adults.<br>
+                The year, month, and date must be written on the envelope.<br>
+                You and the witnesses must write names accurately and affix your seals on the envelope.<br>
+                The envelope must be confirmed by a notary or court clerk within five days after the date is written on it.
+            </p>
+            
+            <p><strong class="subheading">5. An Oral Will</strong></p>
+            <p class="details">
+                This form is only recognized if you are in a sudden critical condition and cannot prepare a will in other forms.<br>
+                You must state your will in front of two witnesses who are capable adults, just like for a recorded will.<br>
+                One of the witnesses must then write down what you have said and read it back to confirm its accuracy.<br>
+                All witnesses must write their names accurately and affix their seals at the bottom of the paper.
+            </p>
+        </div>
+    </div>
+    <button class="btn" id="btn" onclick="location.href='page3(fin).html'">
+        Now, I would like to handwrite my last letter according to the guide.
+    </button>
+
+    <script>
+        document.addEventListener('scroll', function() {
+            const content = document.getElementById('content');
+            const paragraphs = content.getElementsByTagName('p');
+            const windowHeight = window.innerHeight;
+
+            for (let p of paragraphs) {
+                const rect = p.getBoundingClientRect();
+                const percentage = Math.min(Math.max((rect.top / windowHeight), 0), 1);
+                let color;
+                if (percentage < 0.5) {
+                    const midPercentage = percentage * 2;
+                    const colorValue1 = Math.floor(135 + (117 - 135) * midPercentage); // #87776E to #757CCC
+                    const colorValue2 = Math.floor(119 + (124 - 119) * midPercentage);
+                    const colorValue3 = Math.floor(110 + (204 - 110) * midPercentage);
+                    color = `rgb(${colorValue1}, ${colorValue2}, ${colorValue3})`;
+                } else {
+                    const midPercentage = (percentage - 0.5) * 2;
+                    const colorValue1 = Math.floor(117 + (255 - 117) * midPercentage); // #757CCC to #FFFFFF
+                    const colorValue2 = Math.floor(124 + (255 - 124) * midPercentage);
+                    const colorValue3 = Math.floor(204 + (255 - 204) * midPercentage);
+                    color = `rgb(${colorValue1}, ${colorValue2}, ${colorValue3})`;
+                }
+                p.style.color = color;
+            }
+        });
+
+        document.querySelector('.background').addEventListener('animationend', function() {
+            this.classList.add('fixed-background');
+            setTimeout(() => {
+                document.getElementById('content-wrapper').style.scrollbarColor = "rgba(255, 255, 255, 0.05) transparent";
+                document.querySelector('.content-wrapper::-webkit-scrollbar-thumb').style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+                document.querySelector('.content-wrapper::-webkit-scrollbar-thumb').style.mixBlendMode = "hard-light";
+            }, 500); /* 애니메이션이 끝난 후 투명도가 서서히 줄어들도록 딜레이 추가 */
+        });
+
+        setTimeout(() => {
+            document.getElementById('btn').classList.add('visible');
+        }, 1000);
+    </script>
 </body>
 </html>

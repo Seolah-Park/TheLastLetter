@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감사합니다</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>감사합니다</h1>
+    <p>2일 뒤에 메일함을 확인해주세요.</p>
+    <p id="emails"></p>
+
+    <script>
+        (function() {
+            function validEmail(email) { 
+                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:([\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)?)$/i;
+                return re.test(email);
+            }
+
+            function sendWrtReservationDate(email){
+                var code = localStorage.getItem('입력코드');
+                
+                if(email && !validEmail(email) ) {   
+                    var invalidEmail = form.querySelector(".email-invalid");
+                    if (invalidEmail) {
+                        invalidEmail.style.display = "block";
+                        return false;
+                    }
+                }else{
+                    var formData = {};
+                    formData['email1'] = email;
+                    formData['code']  = code;
+                    formData['state'] = 6;
+                    formData.formGoogleSheetName = "responses"; 
+                    formData.formGoogleSendEmail = "";
+
+                    const xhr = new XMLHttpRequest();
+                    var url = "https://script.google.com/macros/s/AKfycbxBczLKntq0W35VayhxChwur1diArbc8-CknlN9JTffEMIA2T_BLSyhWYGfgHq6VOhr/exec";
+                    xhr.open('POST', url);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            console.log(xhr.responseText);
+                        } else {
+                            // alert('There was a problem with the request.');
+                        }
+                    }
+                    var encoded = Object.keys(formData).map(function(k) {
+                        return encodeURIComponent(k) + "=" + encodeURIComponent(formData[k]);
+                    }).join('&');
+                    xhr.send(encoded);
+                };
+            }
+
+            function loaded() {
+                var email = localStorage.getItem('이메일1');
+                document.getElementById('emails').textContent = email;
+                sendWrtReservationDate(email);
+            }
+            
+            document.addEventListener("DOMContentLoaded", loaded, false);
+        })();
+        
+        
+    </script>
+</body>
+</html>
+

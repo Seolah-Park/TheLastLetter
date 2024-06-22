@@ -8,43 +8,184 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: linear-gradient(to bottom, #EBFFFF, #F1F1FF);
-            animation: gradientChange 10s infinite alternate;
+            background: linear-gradient(to bottom, #3C2F2F, #9FBEF2, #FFFFFF);
+            position: relative;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            transition: transform 2.5s ease-in-out;
+            padding-top: 90px; /* 전체적으로 40px 내려감 */
+        }
+        body.animate-up {
+            transform: translateY(-100vh);
+        }
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(to top, white, transparent);
+            pointer-events: none;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: -1;
         }
         h1 {
-            color: #333;
+            color: #ffffff;
+            margin-bottom: 60px; /* 3배 넓게 설정 */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.2);
+        }
+        .content {
+            color: #ffffff;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+        .content p {
+            margin: 10px 0; /* 문장 간 간격 */
+            opacity: 0;
+            animation: fadeInLine 3s forwards;
+        }
+        .content p.spacing {
+            margin-top: 40px; /* 추가된 간격 */
+        }
+        .content p:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+        .content p:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+        .content p:nth-child(3) {
+            animation-delay: 0.9s;
+        }
+        .content p.spacing:nth-child(4) {
+            animation-delay: 1.6s; /* 0.7초 간격 */
+        }
+        .content p:nth-child(5) {
+            animation-delay: 1.9s;
+        }
+        .content p:nth-child(6) {
+            animation-delay: 2.2s;
+        }
+        .content p.spacing:nth-child(7) {
+            animation-delay: 3.2s; /* 0.4초 간격 */
+        }
+        .content p:nth-child(8) {
+            animation-delay: 3.6s;
+        }
+        @keyframes fadeInLine {
+            to {
+                opacity: 1;
+            }
+        }
+        .btn-container {
+            position: relative;
+            text-align: left;
+            margin-top: 90px; /* 버튼을 50px 아래로 내림 */
         }
         .btn {
-            padding: 10px 20px;
             font-size: 16px;
-            margin: 10px;
+            margin: 10px 0;
             cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
+            color: #ffffff;
+            background: none;
             border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 0;
+            transition: color 0.3s, opacity 1.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 4.6s; /* 문장 애니메이션 이후에 1초 대기 후 시작 */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+            display: block;
         }
         .btn:hover {
-            background-color: #0056b3;
+            color: #7A6767;
         }
-        @keyframes gradientChange {
-            0% {
-                background: linear-gradient(to bottom, #EBFFFF, #F1F1FF);
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
             }
-            50% {
-                background: linear-gradient(to bottom, #FFEBEB, #FFF1F1);
-            }
-            100% {
-                background: linear-gradient(to bottom, #EBFFEB, #F1FFF1);
-            }
+        }
+        .indicator {
+            position: absolute;
+            left: -20px;
+            width: 10px;
+            height: 10px;
+            background-color: #7A6767;
+            border-radius: 50%;
+            transition: top 0.3s, opacity 0.3s;
+            opacity: 0;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
 <body>
     <h1>The Last Letter</h1>
-    <button class="btn" onclick="location.href='page2.html'">버튼1</button>
-    <button class="btn" onclick="location.href='page3.html'">버튼2</button>
-    <button class="btn" onclick="location.href='page5.html'">다른 이유로 찾아오셨나요? 코드를 입력해주세요</button>
+    <div class="content">
+        <p>Have you ever thought about your last moment?</p>
+        <p>We all get our last moments someday, but we're not sure when it will be.</p>
+        <p>That's why sometimes we cannot fully convey our feelings for the last time.</p>
+        <p class="spacing">We will help you write the last letter with all your heart in advance.</p>
+        <p>A will can comfort the people you love on behalf of the last words you haven't said.</p>
+        <p>Also, if it's legally effective, it will organize what you've left behind.</p>
+        <p class="spacing">If you let me know the location of the last letter and the email address to send it to,</p>
+        <p>I will convey your sincere feelings on your behalf.</p>
+    </div>
+    <div class="btn-container">
+        <button class="btn" onclick="navigateTo('page2.html')" onmouseover="moveIndicator(this)" onmouseout="hideIndicator()">What kind of forms and conditions are needed for making my will legally effective?</button>
+        <button class="btn" onclick="navigateTo('page3(fin).html')" onmouseover="moveIndicator(this)" onmouseout="hideIndicator()">Even if it isn't legally effective, I just like to write my last letter with all my heart.</button>
+        <button class="btn" onclick="navigateTo('page5(03.54).html')" onmouseover="moveIndicator(this)" onmouseout="hideIndicator()">I'm here to find the location of the last letter left by someone else.</button>
+        <div class="indicator" id="indicator"></div>
+    </div>
+
+    <script>
+        function navigateTo(url) {
+            document.body.classList.add('animate-up');
+            setTimeout(function() {
+                window.location.href = url;
+            }, 2500);
+        }
+
+        function moveIndicator(button) {
+            var indicator = document.getElementById('indicator');
+            if (window.getComputedStyle(button).opacity == '1') {
+                var rect = button.getBoundingClientRect();
+                indicator.style.top = (button.offsetTop + rect.height / 2 - 5) + 'px';
+                indicator.style.opacity = '1';
+            } else {
+                indicator.style.opacity = '0';
+            }
+        }
+
+        function hideIndicator() {
+            var indicator = document.getElementById('indicator');
+            indicator.style.opacity = '0';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var buttons = document.querySelectorAll('.btn');
+            buttons.forEach(function(button) {
+                button.addEventListener('mouseover', function() {
+                    moveIndicator(button);
+                });
+                button.addEventListener('mouseout', function() {
+                    hideIndicator();
+                });
+            });
+        });
+    </script>
 </body>
 </html>

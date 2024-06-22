@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여기에 코드를 입력하세요</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #FFFFFF; /* 처음에 배경이 하얀색이 되도록 설정 */
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: scale(0.7); /* 크기를 0.7배로 조절 */
+        }
+        .background {
+            position: fixed;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #FFFFFF, #FAE3D5, #525EA1);
+            animation: slideUp 2.5s forwards;
+            z-index: -1;
+        }
+        @keyframes slideUp {
+            to {
+                top: 0;
+            }
+        }
+        h1 {
+            color: #836A62; /* 문구 색상을 변경 */
+            font-size: 1.5em; /* 글자 크기를 키움 */
+            text-shadow: 
+                0 0 15px #FFDFD5; /* 네온 효과 추가 */
+            white-space: pre-line; /* 줄바꿈 반영 */
+        }
+        textarea {
+            width: 66.67%; /* 입력 필드 크기를 2/3로 줄임 */
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #FFFEFD;
+            box-shadow: 0 0 10px rgba(255, 254, 253, 0.6), 0 0 20px rgba(255, 254, 253, 0.4);
+            color: #534039;
+            resize: none;
+            box-sizing: border-box;
+            height: 100px;
+            font-size: 1em; /* 글자 크기를 2배로 키움 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center; /* 입력 필드의 중앙에 정렬 */
+        }
+        input::placeholder, textarea::placeholder {
+            text-align: center; /* 플레이스홀더 텍스트 중앙 정렬 */
+            color: #977B72;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1>Hello.<br>I'm sorry that someone precious to you has passed away.<br>If you enter the code you received before in the following column,<br>I will let you know the location of the last letter left to you in two days.</h1>
+        <textarea id="inputCode" placeholder="Please enter the code you received via email here."></textarea>
+        <button class="btn" onclick="checkCode()">enter</button>
+    </div>
+    <script>
+        function checkCode() {
+            var inputCode = document.getElementById('inputCode').value;
+            var flagErr = 0;
+            if(inputCode == ''){
+                flagErr = 1;
+            }else{
+                var code = localStorage.getItem('코드');
+                if(code == inputCode){
+                    localStorage.setItem('입력코드', inputCode);
+                    location.href = 'page6(03.54).html';
+                }else{
+                    flagErr = 1;
+                }
+            }
+
+            if(flagErr==1) alert('이메일 주소와 코드를 다시 확인해주세요.');
+        }
+    </script>
+</body>
+</html>

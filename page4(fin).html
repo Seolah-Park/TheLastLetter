@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please keep the will written on paper in the location you set. After your last moment, This code, which has just been passed to the person you set up, will tell where the last letter is.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to bottom, #FFFFFF, #FAE3D5, #525EA1);
+            color: #977B72;
+            padding-top: 35px;
+            opacity: 0;
+            animation: fadeIn 3s forwards;
+            position: relative; /* ::before 가상 요소를 위한 상대 위치 설정 */
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #3C2F2F, #9FBEF2, #FFFFFF);
+            z-index: -1;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            animation: fadeInContainer 3s forwards;
+        }
+        @keyframes fadeInContainer {
+            to {
+                opacity: 1;
+            }
+        }
+        .text-group {
+            position: relative;
+            top: 22vh;
+            transition: transform 2s, opacity 2s;
+        }
+        h1 {
+            color: #977B72;
+            font-size: 1.5em;
+            font-family: 'Roboto', sans-serif;
+            text-shadow: 0 0 5px rgba(255, 204, 188, 0.8), 0 0 10px rgba(255, 204, 188, 0.6), 0 0 15px rgba(255, 204, 188, 0.4), 0 0 20px rgba(255, 204, 188, 0.2);
+        }
+        #code {
+            font-size: 30px;
+            font-weight: bold;
+            color: #977B72;
+            margin-top: 7vh;
+            text-shadow: 0 0 5px rgba(255, 204, 188, 0.8), 0 0 10px rgba(255, 204, 188, 0.6), 0 0 15px rgba(255, 204, 188, 0.4), 0 0 20px rgba(255, 204, 188, 0.2);
+        }
+        .code-text {
+            white-space: pre-line;
+            text-shadow: 0 0 5px rgba(255, 204, 188, 0.8), 0 0 10px rgba(255, 204, 188, 0.6), 0 0 15px rgba(255, 204, 188, 0.4), 0 0 20px rgba(255, 204, 188, 0.2);
+            margin-top: 0vh;
+            padding-top: 7px;
+        }
+        .btn {
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: none;
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
+            border-radius: 25px;
+            transition: box-shadow 0.3s, text-shadow 0.3s, transform 2s, opacity 2s;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+            position: absolute;
+            bottom: 21vh;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeInButton 3s 1s forwards;
+        }
+        @keyframes fadeInButton {
+            to {
+                opacity: 1;
+            }
+        }
+        .btn:hover {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+        }
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        .fade-out-body::before {
+            opacity: 1;
+            transition: opacity 2s;
+        }
+        .move-up {
+            animation: moveUp 2s forwards;
+        }
+        @keyframes moveUp {
+            to {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+        @keyframes showNewBackground {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-group">
+            <h1>Please keep the handwritten letter at the location you set.</h1>
+            <p id="code"></p>
+            <p class="code-text">This code sent to the person you set up,<br>will tell where your last letter is After your last moment.</p>
+        </div>
+        <button class="btn" onclick="fadeOutElements()">Back to the first page</button>
+    </div>
+
+    <script>
+        function fadeOutElements() {
+            document.querySelector('.text-group').classList.add('move-up');
+            document.querySelector('.btn').classList.add('move-up');
+            document.querySelector('body').classList.add('fade-out-body');
+            setTimeout(() => {
+                location.href = 'index.html';
+            }, 2500); // 2.5초 후에 페이지 이동
+        }
+
+        (function() {
+            function validEmail(email) { 
+                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:([\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)?)$/i;
+                return re.test(email);
+            }
+
+            function sendCodeMail(code){
+                localStorage.setItem('코드', code);
+                var email = localStorage.getItem('이메일1');
+                var email2 = localStorage.getItem('이메일2');
+                var message = localStorage.getItem('메시지');
+                
+                if(email && !validEmail(email) ) {   
+                    var invalidEmail = form.querySelector(".email-invalid");
+                    if (invalidEmail) {
+                        invalidEmail.style.display = "block";
+                        return false;
+                    }
+                }else{
+                    var formData = {};
+                    formData['email1']   = email;
+                    formData['email2']   = email2;
+                    formData['message'] = message;
+                    formData['code']    = code;
+                    formData['state']   = 4;
+                    formData.formGoogleSheetName = "responses"; 
+                    formData.formGoogleSendEmail = ""; 
+                    
+                    const xhr = new XMLHttpRequest();
+                    var url ="https://script.google.com/macros/s/AKfycbxBczLKntq0W35VayhxChwur1diArbc8-CknlN9JTffEMIA2T_BLSyhWYGfgHq6VOhr/exec";
+                    xhr.open('POST', url);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    var encoded = Object.keys(formData).map(function(k) {
+                        return encodeURIComponent(k) + "=" + encodeURIComponent(formData[k]);
+                    }).join('&');
+                    xhr.send(encoded);
+                    xhr.onreadystatechange = function() {
+                        if( (xhr.readyState === 4) && (xhr.status === 200) ) {
+                            console.log(xhr.responseText);
+                        }else{
+                            // alert('There was an error submitting the form.');
+                        }
+                    };
+                    alert('The code for finding your last letter was sent to the email of the person you set up.');
+                };
+            }
+
+            function generateCode() {
+                var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                var lowercase = 'abcdefghijklmnopqrstuvwxyz';
+                var numbers = '0123456789';
+                var code = '';
+                code += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+                code += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+                for (var i = 0; i < 3; i++) {
+                    code += numbers.charAt(Math.floor(Math.random() * numbers.length));
+                }
+                return code;
+            }
+            
+            function loaded() {
+                var code = generateCode();
+                document.getElementById('code').textContent = code;
+                sendCodeMail(code);
+            }
+            
+            document.addEventListener("DOMContentLoaded", loaded, false);
+        })();
+    </script>
+</body>
+</html>
