@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여기에 코드를 입력하세요</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@400&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: #FFFFFF; /* 처음에 배경이 하얀색이 되도록 설정 */
+            background: #FFFFFF;
             overflow: hidden;
             position: relative;
             display: flex;
@@ -19,16 +20,19 @@
         }
         .container {
             text-align: center;
-            width: 80%;
-            max-width: 600px;
+            width: 64%; /* 80%의 0.8배 */
+            max-width: 640px; /* 800px의 0.8배 */
             display: flex;
             flex-direction: column;
             align-items: center;
-            transform: scale(0.7); /* 크기를 0.7배로 조절 */
+            line-height: 1.2; /* line-height 1.5의 0.8배 */
+            opacity: 0;
+            transform: translateY(100px);
+            animation: fadeInUp 1.5s forwards; /* 애니메이션 추가 */
         }
         .background {
             position: fixed;
-            top: 100%;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
@@ -41,78 +45,148 @@
                 top: 0;
             }
         }
-        h1 {
-            color: #836A62; /* 문구 색상을 변경 */
-            font-size: 1.5em; /* 글자 크기를 키움 */
-            text-shadow: 
-                0 0 15px #FFDFD5; /* 네온 효과 추가 */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .message {
+            color: #948785; /* 문구 색상 */
+            font-size: 1.2em; /* 1.5em의 0.8배 */
+            text-shadow: 0 0 5px rgba(249, 144, 126, 0.5), 0 0 10px rgba(249, 144, 126, 0.5), 0 0 15px rgba(139, 144, 126, 0.1); /* 네온 효과 색상과 투명도 */
             white-space: pre-line; /* 줄바꿈 반영 */
+            margin-bottom: 44px; /* 55px의 0.8배 */
+            line-height: 1.6;
+        }
+        .input-container {
+            display: flex;
+            font-size: 20px; /* 20px의 0.8배 */
+            width: 70%; /* 60%의 0.8배 */
+            align-items: center;
+            margin-top: 36px; /* 45px의 0.8배 */
         }
         textarea {
-            width: 66.67%; /* 입력 필드 크기를 2/3로 줄임 */
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            width: 100%; /* 입력 필드 크기 조정 */
+            padding: 0px 4px; /* 0px 5px의 0.8배 */
+            border-radius: 14px; /* 15px의 0.8배 */
             border: none;
-            background-color: #FFFEFD;
-            box-shadow: 0 0 10px rgba(255, 254, 253, 0.6), 0 0 20px rgba(255, 254, 253, 0.4);
+            background-color: transparent;
+            box-shadow: 0 0 8px rgba(255, 254, 253, 0.6), 0 0 16px rgba(255, 254, 253, 0.4); /* 박스 그림자 크기 조정 */
             color: #534039;
             resize: none;
             box-sizing: border-box;
-            height: 100px;
-            font-size: 1em; /* 글자 크기를 2배로 키움 */
+            height: 48px; /* 60px의 0.8배 */
+            font-size: 0.64em; /* 0.8em의 0.8배 */
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center; /* 입력 필드의 중앙에 정렬 */
+            line-height: 48px; /* 세로 중앙 정렬 */
         }
-        input::placeholder, textarea::placeholder {
+        textarea::placeholder {
             text-align: center; /* 플레이스홀더 텍스트 중앙 정렬 */
-            color: #977B72;
+            color: #948785; /* 흰색 */
+            font-size: 14px; /* 16px의 0.8배 */
+            width: 100%;
+            font-family: Arial, sans-serif;
+
         }
         .btn {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 0 12px; /* 0 15px의 0.8배 */
+            font-size: 14.4px; /* 18px의 0.8배 */
             cursor: pointer;
             background-color: transparent;
             color: #fff;
-            border: 2px solid #fff;
-            border-radius: 20px;
+            border: 2px solid rgba(255, 254, 253, 0.4); /* 입력 필드와 비슷한 테두리 색상 */
+            border-radius: 12px; /* 15px의 0.8배 */
             transition: background-color 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
-            margin-top: 20px;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 16px rgba(255, 255, 255, 0.4); /* 박스 그림자 크기 조정 */
+            height: 50px; /* 60px의 0.8배 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 8px; /* 10px의 0.8배 */
+            font-family: Arial, sans-serif;
         }
         .btn:hover {
             background-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.8), 0 0 32px rgba(255, 255, 255, 0.6); /* 박스 그림자 크기 조정 */
+            font-family: Arial, sans-serif;
+        }
+        .title {
+            font-family: 'Playwrite IS', cursive;
+            color: #948785;
+            font-size: 2em;
+            text-shadow: 0 0 5px rgba(249, 144, 126, 0.5), 0 0 10px rgba(249, 144, 126, 0.5), 0 0 15px rgba(139, 144, 126, 0.1);
+            white-space: pre-line;
+            margin-bottom: 44px;
+            line-height: 1.6;
+        }
+        .content {
+            font-family: Arial, sans-serif;
+            color: #948785;
+            font-size: 1.1em;
+            text-shadow: 0 0 5px rgba(249, 144, 126, 0.5), 0 0 10px rgba(249, 144, 126, 0.5), 0 0 15px rgba(139, 144, 126, 0.1);
+            white-space: pre-line;
+            line-height: 1.8;
         }
     </style>
 </head>
 <body>
     <div class="background"></div>
     <div class="container">
-        <h1>Hello.<br>I'm sorry that someone precious to you has passed away.<br>If you enter the code you received before in the following column,<br>I will let you know the location of the last letter left to you in two days.</h1>
-        <textarea id="inputCode" placeholder="Please enter the code you received via email here."></textarea>
-        <button class="btn" onclick="checkCode()">enter</button>
+        <h1 class="title">To the recipient of the last letter.</h1>
+        <p class="content">I'm sorry that someone precious to you has passed away.<br>If you enter the code you received before in the following column,<br>I will let you know the location of the last letter left to you in two days.</p>
+        <div class="input-container">
+            <textarea id="inputCode" placeholder="Please enter the code from email."></textarea>
+            <button class="btn" onclick="checkCode()">enter</button>
+        </div>
     </div>
     <script>
         function checkCode() {
             var inputCode = document.getElementById('inputCode').value;
-            var flagErr = 0;
-            if(inputCode == ''){
-                flagErr = 1;
-            }else{
-                var code = localStorage.getItem('코드');
-                if(code == inputCode){
-                    localStorage.setItem('입력코드', inputCode);
-                    location.href = 'page6(03.54).html';
-                }else{
-                    flagErr = 1;
-                }
-            }
-
-            if(flagErr==1) alert('이메일 주소와 코드를 다시 확인해주세요.');
+            if(inputCode === '') alert('이메일 주소와 코드를 다시 확인해주세요.');
+            else                 recvChkCode(inputCode);
         }
+
+        function recvChkCode(inputCode){
+            const xhr = new XMLHttpRequest();
+            var url ="https://script.google.com/macros/s/AKfycbwKdPWSH6wXdLmNxNT1kuhEdGlVnn1zun1epsod5Z5V2WVEz62ceQgrRYdzyuGjQDVTrA/exec";
+            xhr.open('GET', url);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send();
+            // onreadystatechange 이벤트를 이용해 요청에 대한 응답 결과를 처리합니다.
+            xhr.onreadystatechange = function (event) {
+                const { target } = event;
+                
+                if (target.readyState === XMLHttpRequest.DONE) {
+                    const { status } = target;
+                    var flagErr = 1;
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText);
+                        var retStr = xhr.responseText;
+                        const listCode = retStr.split(',');
+                        for(var n=0; n<listCode.length; n++){
+                            if(listCode[n] === inputCode){
+                                localStorage.setItem('입력코드', inputCode);
+                                location.href = 'page6(03.54).html';
+                                flagErr = 0;
+                                break;
+                            }else{
+                                flagErr = 1;
+                            }
+                        }
+                    } else {
+                        console.error('Error', xhr.status, xhr.statusText); 
+                        flagErr = 1;
+                    }
+                    if(flagErr) alert('이메일 주소와 코드를 다시 확인해주세요.');
+                }
+            };
+        }
+
     </script>
 </body>
 </html>

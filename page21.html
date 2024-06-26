@@ -162,14 +162,6 @@
                 opacity: 0.5;
             }
         }
-        .fade-in-image {
-            position: fixed;
-            width: 300px; /* 이미지 크기 조정 */
-            height: auto;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            z-index: 2; /* 가장 위 레이어에 있게 설정 */
-        }
     </style>
 </head>
 <body class="playwrite-is-custom">
@@ -177,17 +169,10 @@
     <h1>Legally Valid Forms of Wills</h1>
     <div class="content-wrapper" id="content-wrapper">
         <div class="content" id="content">
-            <img src="1.png" id="image-1" class="fade-in-image" alt="Image 1">
-            <img src="2.png" id="image-2" class="fade-in-image" alt="Image 2">
-            <img src="3.png" id="image-3" class="fade-in-image" alt="Image 3">
-            <img src="4.png" id="image-4" class="fade-in-image" alt="Image 4">
-            <img src="5.png" id="image-5" class="fade-in-image" alt="Image 5">
-            <p class="intro">If your will does not have legal validity, the contents you have written may not be reflected when organizing what you leave behind. Therefore, if you have a clear idea of how you want your belongings to be handled, it is important to follow the forms and conditions recognized by Korean law.<br>
-                .<br>
-            P.S. The simpler the process, the more difficult it can be to get legal approval. The stars in the upper line indicate how simple the process is and how easy it is to express your feellings, and the stars in the lower line indicate how strong the legal effect it has.</p>
+            <p class="intro">If your will does not have legal validity, the contents you have written may not be reflected when organizing what you leave behind. Therefore, if you have a clear idea of how you want your belongings to be handled, it is important to follow the forms and conditions recognized by Korean law.</p>
             
             <p><strong class="subheading">1. A Handwritten Will</strong></p>
-            <p class="details" data-image="image-1">
+            <p class="details">
                 This form can be written without the help of legal experts.<br>
                 All contents of a will must be handwritten by you.<br>
                 At the bottom of the paper, the year, month, and date when the will was written must be noted.<br>
@@ -197,7 +182,7 @@
             </p>
             
             <p><strong class="subheading">2. A Recorded Will</strong></p>
-            <p class="details" data-image="image-2">
+            <p class="details">
                 This form is particularly useful when you are unable to write.<br>
                 However, at least one witness is required to observe the recording process and ensure the accuracy of the will.<br>
                 During the video or audio recording of the will, all contents must be recorded in your own voice.<br>
@@ -207,7 +192,7 @@
             </p>
             
             <p><strong class="subheading">3. A Notarial Will</strong></p>
-            <p class="details" data-image="image-3">
+            <p class="details">
                 This form is not commonly used but has the most certain legal validity.<br>
                 Though it requires going through a rigorous process with a notary having legal knowledge,<br>
                 it can play an important role in situations of conflicting interests.<br>
@@ -219,7 +204,7 @@
             </p>
             
             <p><strong class="subheading">4. A Secret Will</strong></p>
-            <p class="details" data-image="image-4">
+            <p class="details">
                 This form can be used if you need to keep the contents of the will confidential until your death.<br>
                 You must write the purpose of the will and your full name.<br>
                 Unlike a handwritten will, this can be written by another.<br>
@@ -232,7 +217,7 @@
             </p>
             
             <p><strong class="subheading">5. An Oral Will</strong></p>
-            <p class="details" data-image="image-5">
+            <p class="details">
                 This form is only recognized if you are in a sudden critical condition and cannot prepare a will in other forms.<br>
                 You must state your will in front of two witnesses who are capable adults, just like for a recorded will.<br>
                 One of the witnesses must then write down what you have said and read it back to confirm its accuracy.<br>
@@ -283,27 +268,6 @@
         setTimeout(() => {
             document.getElementById('btn').classList.add('visible');
         }, 1000);
-
-        // Image fade-in/out logic
-        const paragraphs = document.querySelectorAll('.details');
-        let hoverTimeout;
-
-        paragraphs.forEach(paragraph => {
-            paragraph.addEventListener('mouseover', function() {
-                const imageId = this.getAttribute('data-image');
-                const image = document.getElementById(imageId);
-                hoverTimeout = setTimeout(() => {
-                    image.style.opacity = 1;
-                }, 1000); // 1초 후에 이미지가 서서히 나타남
-            });
-
-            paragraph.addEventListener('mouseout', function() {
-                const imageId = this.getAttribute('data-image');
-                const image = document.getElementById(imageId);
-                clearTimeout(hoverTimeout);
-                image.style.opacity = 0;
-            });
-        });
     </script>
 </body>
 </html>

@@ -2,9 +2,17 @@
 <html>
 <head>
   <title>Contact Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100;400&display=swap" rel="stylesheet">
   <style>
+    .playwrite-is-custom {
+      font-family: "Playwrite IS", cursive;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Playwrite IS', cursive;
       margin: 0;
       height: 100vh;
       overflow: hidden;
@@ -54,7 +62,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 100px;
+      margin-bottom: 50px; /* 줄인 간격 */
       opacity: 0;
     }
     form {
@@ -67,13 +75,14 @@
       flex-direction: column;
       align-items: center;
       mix-blend-mode: multiply;
+      font-family: Arial, sans-serif; /* 기본 폰트 Arial */
     }
     .input-group {
       display: flex;
       justify-content: space-between;
       width: 100%;
       gap: 10px;
-      margin: 0px 0;
+      margin: 0; /* 간격 제거 */
     }
     .input-group .date-input {
       width: 20%;
@@ -86,7 +95,7 @@
     }
     textarea, input {
       width: 100%;
-      margin: 10px 0;
+      margin: 5px 0; /* 줄인 간격 */
       padding: 10px;
       border-radius: 5px;
       border: none;
@@ -95,6 +104,7 @@
       box-sizing: border-box;
       vertical-align: top;
       color: #534039;
+      font-family: Arial
     }
     textarea {
       height: 66px;
@@ -109,11 +119,13 @@
     input::placeholder, textarea::placeholder {
       text-align: start;
       color: #907F79;
+      font-family: Arial
     }
     .extra1 {
       height: 300px;
       padding-top: 10px;
       line-height: 1.5;
+      font-family: Arial, sans-serif; /* 기본 폰트 Arial */
     }
     .extra1::placeholder {
       white-space: pre-line;
@@ -121,8 +133,10 @@
     .btn-container {
       position: absolute;
       bottom: 35px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
       opacity: 0;
     }
     .btn {
@@ -135,6 +149,7 @@
       border-radius: 20px;
       transition: background-color 0.3s, box-shadow 0.3s;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+      font-family: Arial, sans-serif; /* Send 버튼에 Arial 폰트 적용 */
     }
     .btn:hover {
       background-color: rgba(255, 255, 255, 0.1);
@@ -156,19 +171,21 @@
     }
     label {
       display: block;
-      margin-bottom: 0px;
-      color: #675955;
+      margin-bottom: 0px; /* 줄인 간격 */
+      color: #8E7D7A;
       text-align: left;
       margin-left: 0px;
       width: 100%;
       padding-left: 5px;
+      text-shadow: 0 0 5px rgba(243, 222, 219, 0.5), 0 0 10px rgba(243, 222, 219, 0.4), 0 0 15px rgba(243, 222, 219, 0.3), 0 0 20px rgba(243, 222, 219, 0.2);
+      font-family: "Playwrite IS", cursive; /* 기본 폰트 Arial */
     }
   </style>
 </head>
 <body>
   <div class="background" id="background"></div>
-  <div class="container">
-    <form id="contact-form" class="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxBczLKntq0W35VayhxChwur1diArbc8-CknlN9JTffEMIA2T_BLSyhWYGfgHq6VOhr/exec">
+  <div class="container playwrite-is-custom">
+    <form id="contact-form" class="gform" method="POST" action="https://script.google.com/macros/s/AKfycbwKdPWSH6wXdLmNxNT1kuhEdGlVnn1zun1epsod5Z5V2WVEz62ceQgrRYdzyuGjQDVTrA/exec">
       <label for="email1">Dear</label>
       <input type="email" id="email1" name="email1" placeholder="Please enter the email address of the person who will find your will after your last moment." class="small"><br>
       <textarea id="extra1" name="extra1" placeholder="Before you write your last letter on paper, you can practice here.
@@ -229,6 +246,7 @@ I recommend you to think about the following...
         var day = days[today.getDay()];
         var date = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2) + ' (' + day + ')';
         document.getElementById('extra3').value = date;
+        document.getElementById('extra3').style.color = "#534039"; /* 색상 설정 */
       }
 
       function setLocation() {
@@ -242,6 +260,7 @@ I recommend you to think about the following...
               if (xhr.readyState === 4 && xhr.status === 200) {
                 var response = JSON.parse(xhr.responseText);
                 document.getElementById('extra4').value = response.display_name;
+                document.getElementById('extra4').style.color = "#534039"; /* 색상 설정 */
               }
             };
             xhr.send();

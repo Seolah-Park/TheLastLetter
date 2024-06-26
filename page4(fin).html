@@ -3,11 +3,12 @@
 <head>
     <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <title>Please keep the will written on paper in the location you set. After your last moment, This code, which has just been passed to the person you set up, will tell where the last letter is.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@400&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Playwrite IS', cursive;
             text-align: center;
             margin: 0;
             height: 100vh;
@@ -57,7 +58,7 @@
         h1 {
             color: #977B72;
             font-size: 1.5em;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Playwrite IS', cursive;
             text-shadow: 0 0 5px rgba(255, 204, 188, 0.8), 0 0 10px rgba(255, 204, 188, 0.6), 0 0 15px rgba(255, 204, 188, 0.4), 0 0 20px rgba(255, 204, 188, 0.2);
         }
         #code {
@@ -66,14 +67,18 @@
             color: #977B72;
             margin-top: 7vh;
             text-shadow: 0 0 5px rgba(255, 204, 188, 0.8), 0 0 10px rgba(255, 204, 188, 0.6), 0 0 15px rgba(255, 204, 188, 0.4), 0 0 20px rgba(255, 204, 188, 0.2);
+            font-family: 'Arial', sans-serif;
         }
         .code-text {
             white-space: pre-line;
             text-shadow: 0 0 5px rgba(255, 204, 188, 0.8), 0 0 10px rgba(255, 204, 188, 0.6), 0 0 15px rgba(255, 204, 188, 0.4), 0 0 20px rgba(255, 204, 188, 0.2);
             margin-top: 0vh;
             padding-top: 7px;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.5;
         }
         .btn {
+            font-family: 'Arial', sans-serif;
             padding: 15px 20px;
             font-size: 16px;
             cursor: pointer;
@@ -85,7 +90,7 @@
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
             box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
             position: absolute;
-            bottom: 21vh;
+            bottom: 27vh;
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
@@ -172,7 +177,7 @@
                     formData.formGoogleSendEmail = ""; 
                     
                     const xhr = new XMLHttpRequest();
-                    var url ="https://script.google.com/macros/s/AKfycbxBczLKntq0W35VayhxChwur1diArbc8-CknlN9JTffEMIA2T_BLSyhWYGfgHq6VOhr/exec";
+                    var url ="https://script.google.com/macros/s/AKfycbwKdPWSH6wXdLmNxNT1kuhEdGlVnn1zun1epsod5Z5V2WVEz62ceQgrRYdzyuGjQDVTrA/exec";
                     xhr.open('POST', url);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     var encoded = Object.keys(formData).map(function(k) {
